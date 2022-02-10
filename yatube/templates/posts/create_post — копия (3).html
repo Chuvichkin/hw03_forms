@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load user_filters %}
+
+{% block title %}
+{% if is_edit%}Редактировать запись{% else %}Добавить запись{% endif%}
+{% endblock %}
+
+{% block content %}
+    <main role="main" class="container pt-2">
+    <div class="card">
+    <form method="POST" enctype="multipart/form-data"> 
+     {% csrf_token %}
+
+        <!--Выводим поля формы-->
+		<!--Текст-->
+        <div class="form-group">
+            <div class="col-md-2 font-weight-bold">
+                {{ form.text.label_tag }}
+            </div>
+            <div class="col-md-10">
+                {{ form.text|addclass:"form-control" }}
+            </div>
+        </div>
+        <!--Группы в списке-->
+        <div class="form-group">
+            <div class="col-md-9 font-weight-bold">
+                {{ form.group.label_tag }} {{ form.group }}
+            </div>
+        </div>
+        <!--Кнопка добавить/сохранить-->
+        <div class="col-md-9">
+            <button type="submit" class="btn btn-primary">
+                {% if is_edit%}Сохранить{% else %}Добавить{% endif%}
+            </button>
+        </div>
+
+    </form>
+    </div>
+</main>
+{% endblock %}
