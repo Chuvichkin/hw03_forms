@@ -13,7 +13,7 @@
           <div class="col-md-8 p-5">
             <div class="card">
               <div class="card-header">       
-                Новый пост             
+                {% if is_edit%}Редактировать пост{% else %}Новый пост{% endif%}             
               </div>
               <div class="card-body">        
                 <form method="post" enctype="multipart/form-data">
@@ -21,7 +21,7 @@
                             
                   <div class="form-group row my-3 p-3">
                     <label for="id_text">
-                      {{ form.text.label_tag }}                  
+                      Текст поста                  
                       <span class="required text-danger" >*</span>                  
                     </label>
 
@@ -34,7 +34,7 @@
                   </div>            
                   <div class="form-group row my-3 p-3">
                     <label for="id_group">
-                      {{ form.group.label_tag }}                 
+                      Группа                  
                     </label>
 
                       {{ form.group }}
