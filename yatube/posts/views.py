@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Post, Group, User
 from .forms import PostForm
+
+
 NUM_OF_POSTS = 10
 
 
@@ -56,16 +58,12 @@ def post_detail(request, post_id):
 
 @login_required
 def post_create(request):
-    if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.save()
-            return redirect('posts:profile', post.author)
-        return render(request, 'posts/create_post.html', {'form': form})
-    else:
-        form = PostForm()
+    form = PostForm(request.POST or None)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request.user
+        post.save()
+        return redirect('posts:profile', post.author)
     return render(request, 'posts/create_post.html', {'form': form})
 
 
