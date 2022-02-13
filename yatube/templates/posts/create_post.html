@@ -21,7 +21,7 @@
                             
                   <div class="form-group row my-3 p-3">
                     <label for="id_text">
-                      Текст поста                  
+                      {{ form.text.label_tag }}                  
                       <span class="required text-danger" >*</span>                  
                     </label>
 
@@ -34,7 +34,7 @@
                   </div>            
                   <div class="form-group row my-3 p-3">
                     <label for="id_group">
-                      Группа                  
+                      {{ form.group.label_tag }}                  
                     </label>
 
                       {{ form.group }}
